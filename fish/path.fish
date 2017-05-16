@@ -18,14 +18,19 @@ for entry in (string split \n $PATH_DIRS)
 end
 
 # # rvm
-# if which -s rvm; 
+# if which -s rvm;
 # 	set PA $PA /Users/paulirish/.rvm/gems/ruby-2.2.1/bin
 # end
 
-if which -s yarn; 
-	set node_path (greadlink -f (which node))
-	set node_path_dir (string replace "bin/node" "bin" $node_path)
-	set PA $PA $node_path_dir
-end
+# yarn binary
+set PA $PA "$HOME/.yarn/bin"
+
+# yarn global modules (hack for me)
+set PA $PA "$HOME/.homebrew/Cellar/node/7.10.0/bin"
+set PA $PA "$HOME/.homebrew/Cellar/node/7.7.1_1/bin"
+
+# Google Cloud SDK.
+[ -f "$HOME/google-cloud-sdk/path.fish.inc" ]; . "$HOME/google-cloud-sdk/path.fish.inc"
+
 
 set --export PATH $PA

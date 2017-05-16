@@ -5,11 +5,15 @@ source ~/.config/fish/path.fish
 source ~/.config/fish/aliases.fish
 source ~/.config/fish/chpwd.fish
 source ~/.config/fish/functions.fish
+source ~/.config/fish/chromium.fish
 
-source ~/.extra.fish
+# for things not checked into git..
+if test -e "$HOME/.extra.fish";
+	source ~/.extra.fish
+end
 
 # THEME PURE #
-set fish_function_path /Users/paulirish/.config/fish/functions/pure $fish_function_path
+set fish_function_path $HOME/.config/fish/functions/pure $fish_function_path
 
 export GOPATH=$HOME/.go/
 
@@ -90,3 +94,7 @@ set -gx LESS_TERMCAP_us \e'[04;38;5;146m' # begin underline
 
 # this currently messes with newlines in my prompt. lets debug it later.
 # test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish
+
+# tabtab source for yarn package
+# uninstall by removing these lines or running `tabtab uninstall yarn`
+[ -f $HOME/.config/yarn/global/node_modules/tabtab/.completions/yarn.fish ]; and . $HOME/.config/yarn/global/node_modules/tabtab/.completions/yarn.fish
